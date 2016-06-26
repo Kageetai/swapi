@@ -1,10 +1,13 @@
 export class MainController {
-  constructor (SwapiApi, toastr) {
+  constructor (Swapi, toastr) {
     'ngInject';
 
     this.creationDate = 1466857363217;
     this.toastr = toastr;
 
-    this.people = SwapiApi.people.query();
+    Swapi.getPeople()
+      .then((data) => {
+        this.people = data;
+      });
   }
 }
