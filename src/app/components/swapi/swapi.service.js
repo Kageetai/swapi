@@ -13,7 +13,7 @@ export class Swapi {
 
     this.getIdFromUrl = function (url) {
       var array = url.split("/");
-      return array[array.length-2]
+      return array[array.length-2];
     };
   }
 

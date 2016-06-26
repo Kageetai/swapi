@@ -8,12 +8,24 @@
     <div class="col-sm-12">
       <div ng-show="person.person" class="person">
         <h1 class="name">{{ person.person.name }}</h1>
-        <i class="gender fa fa-{{ person.person.gender }} pull-right" ng-if="person.person.gender != 'n/a'"
-           aria-hidden="true"></i>
-        <i class="gender fa fa-android pull-right" ng-if="person.person.gender == 'n/a'" aria-hidden="true"></i>
 
         <p>from {{ person.person.planet.name }}</p>
-        <p>{{ person.person.height }}cm, {{ person.person.mass }}kg, {{ person.person.hair_color }}</p>
+        <p>
+          <i class="gender fa fa-{{ person.person.gender }}" ng-if="person.person.gender != 'n/a'"
+             aria-hidden="true"></i>
+          <i class="gender fa fa-android" ng-if="person.person.gender == 'n/a'" aria-hidden="true"></i>
+          {{ person.person.height }}cm, {{ person.person.mass }}kg, {{ person.person.hair_color }}
+        </p>
+
+        <div class="neighbors" ng-if="person.person.planet.residents.length > 1">
+          <h2>Other people from {{ person.person.planet.name}}:</h2>
+
+          <ul>
+            <li ng-repeat="p in person.neighbors">
+              <a ui-sref="person({ id: p.id })">{{ p.name }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="loader" ng-hide="person.person">&nbsp;</div>

@@ -10,7 +10,7 @@ $brand-primary: $sw-color;
 $body-bg: $navbar-inverse-bg;
 $text-color: $gray-lighter;
 $link-color: $brand-primary;
-$link-hover-color: darken($link-color, 15%);
+$link-hover-color: darken($link-color, 10%);
 $navbar-height: 100px;
 $navbar-inverse-link-color: $sw-color;
 $navbar-inverse-link-hover-color: darken($navbar-inverse-link-color, 10%);
