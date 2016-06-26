@@ -17,7 +17,14 @@ export class Swapi {
       return this.$http.get(this.apiHost + '/people/?page=' + page)
         .then((response) => {
           this.countPeople = response.data.count;
-          return response.data.results;
+          var promises = response.data.results.map((e) => {
+            var planetUrl = e.homeworld.split("/");
+            return this.getPlanet(planetUrl[planetUrl.length-2])
+              .then((response) => {
+                e.planet = response;
+              });
+          });
+          return this.$q.all(promises).then(() => response.data.results );
         })
         .catch(this.handleError);
     } else {
@@ -28,7 +35,11 @@ export class Swapi {
   getPerson(id = 1) {
     return this.$http.get(this.apiHost + '/people/' + id + '/')
       .then((response) => {
-        return response.data;
+        var planetUrl = response.data.homeworld.split("/");
+        return this.getPlanet(planetUrl[planetUrl.length-2])
+          .then((response) => {
+            response.data.planet = response;
+          });
       })
       .catch(this.handleError);
   }

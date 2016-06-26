@@ -10,9 +10,8 @@
         <h3 class="name">{{ p.name }}</h3>
         <i class="gender fa fa-{{ p.gender }} pull-right" ng-if="p.gender != 'n/a'" aria-hidden="true"></i>
         <i class="gender fa fa-android pull-right" ng-if="p.gender == 'n/a'" aria-hidden="true"></i>
-        <p>{{ p.height }}cm</p>
-        <p>{{ p.mass }}kg</p>
-        <p>{{ p.hair_color }}</p>
+        <p>from {{ p.planet.name }}</p>
+        <p>{{ p.height }}cm, {{ p.mass }}kg, {{ p.hair_color }}</p>
       </div>
     </div>
   </div>
