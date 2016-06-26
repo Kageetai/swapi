@@ -7,9 +7,10 @@
   <div class="people row">
     <div class="col-sm-6 col-md-4" ng-repeat="p in main.people">
       <div class="person">
-        <h3 class="name">{{ p.name }}</h3>
+        <a ui-sref="person({ id: p.id })"><h3 class="name">{{ p.name }}</h3></a>
         <i class="gender fa fa-{{ p.gender }} pull-right" ng-if="p.gender != 'n/a'" aria-hidden="true"></i>
         <i class="gender fa fa-android pull-right" ng-if="p.gender == 'n/a'" aria-hidden="true"></i>
+
         <p>from {{ p.planet.name }}</p>
         <p>{{ p.height }}cm, {{ p.mass }}kg, {{ p.hair_color }}</p>
       </div>

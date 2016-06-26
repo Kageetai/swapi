@@ -3,9 +3,8 @@ describe('controllers', () => {
 
   beforeEach(angular.mock.module('swapi'));
 
-  beforeEach(inject(($controller, webDevTec, toastr) => {
-    spyOn(webDevTec, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
-    spyOn(toastr, 'info').and.callThrough();
+  beforeEach(inject(($controller, people) => {
+    spyOn(people, 'loadMorePeople').and.returnValue([{}, {}, {}, {}, {}]);
 
     vm = $controller('MainController');
   }));
@@ -14,12 +13,7 @@ describe('controllers', () => {
     expect(vm.creationDate).toEqual(jasmine.any(Number));
   });
 
-  it('should define animate class after delaying timeout', inject($timeout => {
-    $timeout.flush();
-    expect(vm.classAnimation).toEqual('rubberBand');
-  }));
-
-  it('should define more than 5 awesome things', () => {
+  it('should define more than 5 people', () => {
     expect(angular.isArray(vm.people)).toBeTruthy();
     expect(vm.people.length === 5).toBeTruthy();
   });

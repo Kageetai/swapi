@@ -6,9 +6,17 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="person">
-        <h1>{{person.person.name}}</h1>
+      <div ng-show="person.person" class="person">
+        <h1 class="name">{{ person.person.name }}</h1>
+        <i class="gender fa fa-{{ person.person.gender }} pull-right" ng-if="person.person.gender != 'n/a'"
+           aria-hidden="true"></i>
+        <i class="gender fa fa-android pull-right" ng-if="person.person.gender == 'n/a'" aria-hidden="true"></i>
+
+        <p>from {{ person.person.planet.name }}</p>
+        <p>{{ person.person.height }}cm, {{ person.person.mass }}kg, {{ person.person.hair_color }}</p>
       </div>
+
+      <div class="loader" ng-hide="person.person">&nbsp;</div>
     </div>
   </div>
 

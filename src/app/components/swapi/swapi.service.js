@@ -11,7 +11,7 @@ export class Swapi {
       $log.error('XHR Failed\n' + angular.toJson(error.data, true));
     };
 
-    this.getPlanetIdFromUrl = function (url) {
+    this.getIdFromUrl = function (url) {
       var array = url.split("/");
       return array[array.length-2]
     };
@@ -22,12 +22,16 @@ export class Swapi {
       return this.$http.get(this.apiHost + '/people/?page=' + page)
         .then((response) => {
           this.countPeople = response.data.count;
+
           var promises = response.data.results.map((e) => {
-            return this.getPlanet(this.getPlanetIdFromUrl(e.homeworld))
+            e.id = this.getIdFromUrl(e.url);
+            
+            return this.getPlanet(this.getIdFromUrl(e.homeworld))
               .then((response) => {
                 e.planet = response;
               });
           });
+
           return this.$q.all(promises).then(() => response.data.results );
         })
         .catch(this.handleError);
@@ -39,7 +43,9 @@ export class Swapi {
   getPerson(id = 1) {
     return this.$http.get(this.apiHost + '/people/' + id + '/')
       .then((response) => {
-        return this.getPlanet(this.getPlanetIdFromUrl(response.data.homeworld))
+        response.data.id = this.getIdFromUrl(response.data.url);
+
+        return this.getPlanet(this.getIdFromUrl(response.data.homeworld))
           .then((data) => {
             response.data.planet = data;
             return response.data;
@@ -64,6 +70,7 @@ export class Swapi {
   getPlanet(id = 1) {
     return this.$http.get(this.apiHost + '/planets/' + id + '/')
       .then((response) => {
+        response.data.id = this.getIdFromUrl(response.data.url);
         return response.data;
       })
       .catch(this.handleError);

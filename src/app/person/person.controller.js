@@ -4,10 +4,11 @@ export class PersonController {
 
     this.log = $log.log;
     this.swapi = Swapi;
-    
+
     Swapi.getPerson($stateParams.id)
       .then((data) => {
         this.person = data;
+        this.log(data);
       });
   }
 }
