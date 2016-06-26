@@ -16,5 +16,7 @@
       </div>
     </div>
   </div>
+  <div ng-if="!main.allLoaded" class="lazy-loader loader" in-view="main.loadMorePeople()">&nbsp;</div>
+  <div ng-show="main.allLoaded" class="all-loaded">nothing more to load...</div>
 
 </div>

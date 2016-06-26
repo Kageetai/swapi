@@ -7,7 +7,7 @@ import { MainController } from './main/main.controller';
 import { Swapi } from '../app/components/swapi/swapi.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 
-angular.module('swapi', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr'])
+angular.module('swapi', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'angular-inview'])
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)

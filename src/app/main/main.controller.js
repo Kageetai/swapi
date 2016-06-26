@@ -1,13 +1,23 @@
 export class MainController {
-  constructor (Swapi, toastr) {
+  constructor ($log, Swapi, toastr) {
     'ngInject';
 
-    this.creationDate = 1466857363217;
+    this.log = $log.log;
     this.toastr = toastr;
+    this.swapi = Swapi;
+    this.creationDate = 1466857363217;
+    this.people = [];
+    this.page = 0;
+    this.allLoaded = false;
+  }
 
-    Swapi.getPeople()
+  loadMorePeople() {
+    this.swapi.getPeople(++this.page)
       .then((data) => {
-        this.people = data;
+        this.people = this.people.concat(data);
+      })
+      .catch(() => {
+        this.allLoaded = true;
       });
   }
 }
