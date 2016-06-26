@@ -4,9 +4,11 @@
  */
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path: "../../bower_components/font-awesome/fonts";
 $sw-color: #FFE81F;
 $body-bg: $navbar-inverse-bg;
 $text-color: $gray-lighter;
+$navbar-height: 100px;
 $navbar-inverse-link-color: $sw-color;
 $navbar-inverse-link-hover-color: darken($navbar-inverse-link-color, 10%);
 $navbar-inverse-link-active-color: $navbar-inverse-link-hover-color;
