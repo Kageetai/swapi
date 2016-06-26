@@ -23,6 +23,14 @@ nav {
       width: auto;
       margin-right: 15px;
       vertical-align: bottom;
+      transform-origin: 50% 100%;
+      transform: perspective(100px) rotateX(35deg);
+      transition: transform .5s;
+
+      &:hover {
+        transform: perspective(100px) rotateX(35deg) translateY(-400%);
+        transition: transform 3s;
+      }
     }
   }
 }
