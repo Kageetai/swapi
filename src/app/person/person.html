@@ -9,16 +9,17 @@
       <div ng-show="person.person" class="person">
         <h1 class="name">{{ person.person.name }}</h1>
 
-        <p>from {{ person.person.planet.name }}</p>
+        <p>from {{ (person.person.planet.name != "unknown") ? person.person.planet.name : "an unknown planet" }}</p>
         <p>
-          <i class="gender fa fa-{{ person.person.gender }}" ng-if="person.person.gender != 'n/a'"
+          <i class="gender fa fa-{{ (person.person.gender != 'n/a' && person.person.gender != 'none') ? person.person.gender : 'android' }}"
              aria-hidden="true"></i>
-          <i class="gender fa fa-android" ng-if="person.person.gender == 'n/a'" aria-hidden="true"></i>
-          {{ person.person.height }}cm, {{ person.person.mass }}kg, {{ person.person.hair_color }}
+          {{ (person.person.height != "unknown") ? person.person.height + "cm" : "unknown height"}},
+          {{ (person.person.mass != "unknown") ? person.person.mass + "kg" : "unknown weight" }},
+          {{ (person.person.hair_color != "n/a" ) ? person.person.hair_color : "no hair"}}
         </p>
 
         <div class="neighbors" ng-if="person.person.planet.residents.length > 1">
-          <h2>Other people from {{ person.person.planet.name}}:</h2>
+          <h2>Other people {{ (person.person.planet.name != "unknown") ? "from " + person.person.planet.name : "with unknown origins (so far)"}}:</h2>
 
           <ul>
             <li ng-repeat="p in person.neighbors">

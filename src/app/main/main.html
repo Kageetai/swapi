@@ -8,11 +8,15 @@
     <div class="col-sm-6 col-md-4" ng-repeat="p in main.people">
       <div class="person">
         <a ui-sref="person({ id: p.id })"><h3 class="name">{{ p.name }}</h3></a>
-        <i class="gender fa fa-{{ p.gender }} pull-right" ng-if="p.gender != 'n/a'" aria-hidden="true"></i>
-        <i class="gender fa fa-android pull-right" ng-if="p.gender == 'n/a'" aria-hidden="true"></i>
+        <i class="gender fa fa-{{ (p.gender != 'n/a' && p.gender != 'none') ? p.gender : 'android' }} pull-right"
+           aria-hidden="true"></i>
 
-        <p>from {{ p.planet.name }}</p>
-        <p>{{ p.height }}cm, {{ p.mass }}kg, {{ p.hair_color }}</p>
+        <p>from {{ (p.planet.name != "unknown") ? p.planet.name : "an unknown planet" }}</p>
+        <p>
+          {{ (p.height != "unknown") ? p.height + "cm" : "unknown height"}},
+          {{ (p.mass != "unknown") ? p.mass + "kg" : "unknown weight" }},
+          {{ (p.hair_color != "n/a" ) ? p.hair_color : "no hair"}}
+        </p>
       </div>
     </div>
   </div>
