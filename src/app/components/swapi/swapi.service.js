@@ -9,7 +9,12 @@ export class Swapi {
 
     this.handleError = function (error) {
       $log.error('XHR Failed\n' + angular.toJson(error.data, true));
-    }
+    };
+
+    this.getPlanetIdFromUrl = function (url) {
+      var array = url.split("/");
+      return array[array.length-2]
+    };
   }
 
   getPeople(page = 1) {
@@ -18,8 +23,7 @@ export class Swapi {
         .then((response) => {
           this.countPeople = response.data.count;
           var promises = response.data.results.map((e) => {
-            var planetUrl = e.homeworld.split("/");
-            return this.getPlanet(planetUrl[planetUrl.length-2])
+            return this.getPlanet(this.getPlanetIdFromUrl(e.homeworld))
               .then((response) => {
                 e.planet = response;
               });
@@ -35,10 +39,10 @@ export class Swapi {
   getPerson(id = 1) {
     return this.$http.get(this.apiHost + '/people/' + id + '/')
       .then((response) => {
-        var planetUrl = response.data.homeworld.split("/");
-        return this.getPlanet(planetUrl[planetUrl.length-2])
-          .then((response) => {
-            response.data.planet = response;
+        return this.getPlanet(this.getPlanetIdFromUrl(response.data.homeworld))
+          .then((data) => {
+            response.data.planet = data;
+            return response.data;
           });
       })
       .catch(this.handleError);

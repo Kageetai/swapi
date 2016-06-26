@@ -1,9 +1,8 @@
 export class MainController {
-  constructor ($log, Swapi, toastr) {
+  constructor ($log, Swapi) {
     'ngInject';
 
     this.log = $log.log;
-    this.toastr = toastr;
     this.swapi = Swapi;
     this.creationDate = 1466857363217;
     this.people = [];
