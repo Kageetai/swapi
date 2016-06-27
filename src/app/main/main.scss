@@ -20,21 +20,50 @@
 }
 
 .all-loaded {
-  font-size: 1.5em;
   margin: 30px;
+  color: $gray;
+  font-size: 1.5em;
   text-align: center;
 }
 
+input#filter {
+  margin-bottom: 1em;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
 .people {
+  padding: 15px 0;
+
   .person {
-    padding: 15px 0;
+    display: block;
+    min-height: 135px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: inherit;
+    transition: background-color .5s;
+
+    &:hover {
+      background-color: darken($body-bg, 2%);
+      border-radius: $border-radius-large;
+      text-decoration: none;
+      transition: background-color .5s;
+    }
+
+    > p:last-child {
+      margin-bottom: 0;
+    }
 
     .name {
       display: inline-block;
       margin-top: 0;
+      color: $sw-color;
     }
 
     .gender {
+      font-size: 24px;
       line-height: 24px * 1.1;
     }
   }

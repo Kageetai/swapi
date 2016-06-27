@@ -5,20 +5,26 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: "../../bower_components/font-awesome/fonts";
-$sw-color: #FFE81F;
+$sw-color: #ffe250;
 $brand-primary: $sw-color;
 $body-bg: $navbar-inverse-bg;
 $text-color: $gray-lighter;
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 10%);
 $thumbnail-bg: transparent;
-$thumbnail-border: black;
+$thumbnail-border: $navbar-inverse-border;
 $thumbnail-caption-color: $text-color;
 $navbar-height: 100px;
 $navbar-inverse-link-color: $sw-color;
 $navbar-inverse-link-hover-color: darken($navbar-inverse-link-color, 10%);
 $navbar-inverse-link-active-color: $navbar-inverse-link-hover-color;
 $navbar-inverse-brand-color: $navbar-inverse-link-color;
+$input-bg: transparent;
+$input-bg-disabled: $navbar-inverse-border;
+$input-color: $gray-lighter;
+$input-border: $navbar-inverse-border;
+$input-border-focus: darken($sw-color, 25%);
+$input-color-placeholder: $gray-light;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
