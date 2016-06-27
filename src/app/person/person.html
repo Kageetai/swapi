@@ -5,7 +5,18 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-4">
+      <div class="thumbnail" ng-show="person.photo">
+        <a ng-href="{{ person.photo.link }}">
+          <img ng-src="{{ person.photo.link }}" alt="{{ person.person.name }}">
+        </a>
+        <div class="caption">
+          <p>{{ person.photo.snippet }}</p>
+          <span>Source: <a ng-href="{{ person.photo.image.contextLink }}">{{ person.photo.displayLink }}</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
       <div ng-show="person.person" class="person">
         <h1 class="name">{{ person.person.name }}</h1>
 
@@ -15,7 +26,8 @@
              aria-hidden="true"></i>
           {{ (person.person.height != "unknown") ? person.person.height + "cm" : "unknown height"}},
           {{ (person.person.mass != "unknown") ? person.person.mass + "kg" : "unknown weight" }},
-          {{ (person.person.hair_color != "n/a" ) ? person.person.hair_color : "no hair"}}
+          {{ (person.person.eye_color != "unknown") ? person.person.eye_color + " eyes" : "unknown eye color" }},
+          {{ (person.person.hair_color != "n/a" ) ? person.person.hair_color + " hair" : "no hair"}}
         </p>
 
         <div class="neighbors" ng-if="person.person.planet.residents.length > 1">
@@ -29,8 +41,8 @@
         </div>
       </div>
 
-      <div class="loader" ng-hide="person.person">&nbsp;</div>
     </div>
   </div>
+  <div class="loader" ng-hide="person.person">&nbsp;</div>
 
 </div>

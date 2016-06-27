@@ -1,10 +1,11 @@
 export class PersonController {
-  constructor ($log, $q, Swapi, $stateParams) {
+  constructor ($log, $q, $stateParams, Swapi, GoogleSearch) {
     'ngInject';
 
     this.log = $log.log;
     this.$q = $q;
     this.swapi = Swapi;
+    this.googleSearch = GoogleSearch;
     this.neighbors = [];
 
     Swapi.getPerson($stateParams.id)
@@ -12,6 +13,13 @@ export class PersonController {
         this.person = data;
         this.log(data);
         return data;
+      })
+      .then((person) => {
+        this.googleSearch.getFaces(person.name)
+          .then((items) => {
+            this.photo = items[0];
+          });
+        return person;
       })
       .then((person) => {
         if (person.planet.residents.length == 1) {
