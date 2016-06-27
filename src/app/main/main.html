@@ -4,21 +4,39 @@
     <acme-navbar></acme-navbar>
   </div>
 
-  <div class="people row">
-    <div class="col-sm-6 col-md-4" ng-repeat="p in main.people">
-      <div class="person">
-        <a ui-sref="person({ id: p.id })"><h3 class="name">{{ p.name }}</h3></a>
-        <i class="gender fa fa-{{ (p.gender != 'n/a' && p.gender != 'none') ? p.gender : 'android' }} pull-right"
-           aria-hidden="true"></i>
-
-        <p>from {{ (p.planet.name != "unknown") ? p.planet.name : "an unknown planet" }}</p>
-        <p>
-          {{ (p.height != "unknown") ? p.height + "cm" : "unknown height"}},
-          {{ (p.mass != "unknown") ? p.mass + "kg" : "unknown weight" }},
-          {{ (p.hair_color != "n/a" ) ? p.hair_color : "no hair"}}
-        </p>
-      </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-6">
+      <input type="text" class="form-control" id="filter" placeholder="Filter" ng-model="main.filter">
     </div>
+
+    <div class="col-md-3">
+      <select class="form-control" id="sorting" ng-model="main.sorting">
+        <option value="name">Sort by name</option>
+        <option value="planet">Sort by planet</option>
+        <option value="height">Sort by height</option>
+        <option value="mass">Sort by mass</option>
+        <option value="gender">Sort by gender</option>
+        <option value="hair_color">Sort by hair color</option>
+        <option value="eye_color">Sort by eye color</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="people row">
+    <a ui-sref="person({ id: p.id })" class="person col-sm-6 col-md-4" ng-repeat="p in main.people | filter:main.filter | orderBy:main.sorting">
+      <h3 class="name">{{ p.name }}</h3>
+      <i class="gender fa fa-{{ (p.gender != 'n/a' && p.gender != 'none') ? p.gender : 'android' }} pull-right"
+         aria-hidden="true"></i>
+
+      <p>from {{ (p.planet.name != "unknown") ? p.planet.name : "an unknown planet" }}</p>
+
+      <p>
+        {{ (p.height != "unknown") ? p.height + "cm" : "unknown height"}},
+        {{ (p.mass != "unknown") ? p.mass + "kg" : "unknown weight" }},
+        {{ (p.eye_color != "unknown") ? p.eye_color + " eyes" : "unknown eye color" }},
+        {{ (p.hair_color != "n/a" ) ? p.hair_color  + " hair": "no hair"}}
+      </p>
+    </a>
   </div>
   <div ng-hide="main.allLoaded" class="lazy-loader loader" in-view="main.loadMorePeople()">&nbsp;</div>
   <div ng-show="main.allLoaded" class="all-loaded">nothing more to load...</div>

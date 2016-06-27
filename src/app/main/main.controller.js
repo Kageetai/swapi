@@ -1,5 +1,5 @@
 export class MainController {
-  constructor ($log, Swapi) {
+  constructor ($log, $filter, Swapi) {
     'ngInject';
 
     this.log = $log.log;
@@ -8,6 +8,8 @@ export class MainController {
     this.people = [];
     this.page = 0;
     this.allLoaded = false;
+    this.filter = '';
+    this.sorting = 'name';
   }
 
   loadMorePeople() {
