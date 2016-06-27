@@ -4,7 +4,7 @@ export class GoogleSearch {
 
     this.$http = $http;
     this.url = 'https://www.googleapis.com/customsearch/v1/';
-    this.key = 'AIzaSyCufE_YvUVrbXZ7zlxUk0ux6imbAn28ItM';
+    this.key = 'AIzaSyDXzqnoMWBgDYa1AUezB0QrF16wlgFzCqk';
     this.cx = '013541796331457822807:_hy2nolunkk';
 
   }
