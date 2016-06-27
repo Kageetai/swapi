@@ -1,5 +1,5 @@
 export class GoogleSearch {
-  constructor($log, $http, $q) {
+  constructor($http) {
     'ngInject';
 
     this.$http = $http;
